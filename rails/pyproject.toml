@@ -1,0 +1,27 @@
+[project]
+name = "rails-board"
+version = "0.3.1"
+description = "Local triage board: review findings as kanban cards, discuss each with Claude Code, mark them settled"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+# Not `rails`: macOS ships a /usr/bin/rails stub (Ruby on Rails) that many shells find first.
+rails-board = "rails_board.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rails_board"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "B", "UP", "BLE"]
+ignore = ["E501", "N818"]  # long lines are fine; Fail and Invalid read better without an Error suffix
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,6 @@
+# Only what is published: the marketplace list and the plugins in it.
+/*
+!/.gitignore
+!/.claude-plugin/
+!/rails/
+.DS_Store

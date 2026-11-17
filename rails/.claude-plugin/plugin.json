@@ -1,0 +1,16 @@
+{
+  "name": "rails",
+  "version": "0.3.1",
+  "description": "Local kanban boards for Claude Code: settle review findings card by card with Claude (rails:rails), or track a plain to-do list (rails:list).",
+  "author": {
+    "name": "NJiHin"
+  },
+  "license": "MIT",
+  "keywords": [
+    "review",
+    "triage",
+    "kanban",
+    "todo",
+    "codex"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "tools",
+  "description": "Small tools for working with Claude Code.",
+  "owner": {
+    "name": "NJiHin"
+  },
+  "plugins": [
+    {
+      "name": "rails",
+      "source": "./rails",
+      "description": "Local kanban boards for Claude Code: settle review findings card by card with Claude (rails:rails), or track a plain to-do list (rails:list)."
+    }
+  ]
+}

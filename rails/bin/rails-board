@@ -1,0 +1,22 @@
+#!/bin/sh
+# Runs the board tool straight from this folder. Nothing to install: it needs only Python 3.9 or
+# later (found as python3, python or py) and uses no packages beyond the standard library.
+
+# Find the real file first, so the command also works through a link placed on the PATH.
+self=$0
+while [ -L "$self" ]; do
+  target=$(readlink "$self")
+  case $target in
+    /*) self=$target ;;
+    *) self=$(dirname "$self")/$target ;;
+  esac
+done
+root=$(cd "$(dirname "$self")/.." && pwd)
+# python3 first; Windows installs name it python or py, and its bare python3 may be a Store stub.
+for py in python3 python py; do
+  "$py" -c 'import sys; sys.exit(sys.version_info < (3, 9))' 2>/dev/null && break
+  py=
+done
+[ -n "$py" ] || { echo "rails-board: needs Python 3.9 or later (python3, python or py)" >&2; exit 1; }
+# PYTHONUTF8: Windows otherwise reads and prints in the local code page, not UTF-8; the server child inherits it.
+PYTHONUTF8=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$root/src${PYTHONPATH:+:$PYTHONPATH}" exec "$py" -m rails_board "$@"
